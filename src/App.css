@@ -2,7 +2,42 @@
   text-align: center;
 }
 
-.App-logo {
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(41, 128, 45);
+  text-decoration: none;
+}
+
+.nav-links {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links h3 {
+  color: white;
+  text-decoration: none;
+}
+
+.nav h3 h2 {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-title {
+  size: 550px;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +70,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
