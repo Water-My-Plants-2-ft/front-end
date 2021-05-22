@@ -3,7 +3,7 @@ import React from "react";
 const AddPlants = () => {
   return (
     <div>
-      <h1>add plants page</h1>
+      <h1>Add Plants Page</h1>
     </div>
   );
 };
