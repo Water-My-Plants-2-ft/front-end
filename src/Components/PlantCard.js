@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 import {
   Card as ReactCard,
@@ -13,12 +14,17 @@ import {
 } from "reactstrap";
 import plantpic from "../img/plantpic.jpg";
 
-import { useHistory } from "react-router";
 const Card = styled(ReactCard)`
   margin-bottom: 50px;
 `;
 
 const PlantCard = ({ plant }) => {
+  const history = useHistory();
+
+  const routeToEdit = (e, item) => {
+    e.preventDefault();
+    history.push(`/editPlant`);
+  };
   return (
     <Card>
       <CardImg top width="100%" src={plantpic} alt="plant" />
@@ -37,7 +43,7 @@ const PlantCard = ({ plant }) => {
       </CardBody>
 
       <CardBody>
-        <Button>Edit Plant</Button>
+        <Button onClick={routeToEdit}>Edit Plant</Button>
         <br />
         <br />
         <Button>Delete Plant</Button>

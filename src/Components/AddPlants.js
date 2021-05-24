@@ -22,7 +22,7 @@ const Input = styled.input`
 
 const initialValue = {
   plant_name: "",
-  item_description: "",
+  species: "",
 
   h2o_Frequency: "",
 };
@@ -125,7 +125,7 @@ const AddItem = () => {
                   type="submit"
                   disabled={!item.plant_name || !item.species}
                 >
-                  Add Item
+                  Add Plant
                 </Button>
               </div>
               <p>{errors.plant_name}</p>

@@ -89,21 +89,20 @@ const EditAccount = () => {
                     </div>
                     <div>
                       <Input
-                        value={formValues.password}
-                        onChange={onChange}
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                      />
-                    </div>
-
-                    <div>
-                      <Input
                         value={formValues.phoneNumber}
                         onChange={onChange}
                         name="phoneNumber"
                         type="text"
                         placeholder="New Number"
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        value={formValues.password}
+                        onChange={onChange}
+                        name="password"
+                        type="password"
+                        placeholder="Password"
                       />
                     </div>
 

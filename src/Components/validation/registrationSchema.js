@@ -11,8 +11,9 @@ export default yup.object().shape({
     .min(4, "Password must be at least 4 characters")
     .max(20, "Password can not be more than 20 characters"),
 
-  email: yup
-    .string()
-    .email("Valid Email Required")
-    .required("Valid Email Required"),
+  phoneNumber: yup
+    .number()
+    .min(1, `Price must be at least 1`)
+    .max(999999.99, `Must be real Number`)
+    .required(`Number is required`),
 });
