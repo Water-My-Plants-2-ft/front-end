@@ -45,12 +45,12 @@ const MyAccount = () => {
         <br />
         <br />
         <h2>
-          Email: <Badge color="info">email</Badge>
+          Phone #: <Badge color="info">phone #</Badge>
         </h2>
         <br />
         <br />
         <h2>
-          User ID: <Badge color="info">userid </Badge>
+          User ID: <Badge color="info">userid</Badge>
         </h2>
         <br />
         <br />
