@@ -96,15 +96,6 @@ const SignupPage = () => {
                       placeholder="Username"
                     />
                   </div>
-                  <div>
-                    <Input
-                      value={formValues.password}
-                      onChange={onChange}
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                    />
-                  </div>
 
                   <div>
                     <Input
@@ -113,6 +104,15 @@ const SignupPage = () => {
                       name="phoneNumber"
                       type="text"
                       placeholder="Phone Number"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      value={formValues.password}
+                      onChange={onChange}
+                      name="password"
+                      type="password"
+                      placeholder="Password"
                     />
                   </div>
                   <div>

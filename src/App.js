@@ -8,6 +8,7 @@ import Signup from "./Components/SignUp";
 import MyAccount from "./Components/MyAccount";
 import MyPlants from "./Components/MyPlants";
 import Profile from "./Components/Profile";
+import EditPlant from "./Components/EditPlant";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/myaccount" component={MyAccount} />
             <Route path="/myplants" component={MyPlants} />
             <Route path="/profile" component={Profile} />
+            <Route path="/editPlant" component={EditPlant} />
           </Switch>
         </div>
       </Router>
