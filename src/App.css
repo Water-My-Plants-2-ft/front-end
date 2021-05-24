@@ -93,6 +93,21 @@ button {
   color: rgb(200, 220, 220);
 }
 
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+.Login button {
+  margin-top: 2%;
+}
+
 /* 
 
 
