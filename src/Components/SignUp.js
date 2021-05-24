@@ -23,7 +23,7 @@ const SignupPage = () => {
   const initialFormValues = {
     username: "",
     password: "",
-    email: "",
+    phoneNumber: "",
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -108,11 +108,11 @@ const SignupPage = () => {
 
                   <div>
                     <Input
-                      value={formValues.email}
+                      value={formValues.phoneNumber}
                       onChange={onChange}
-                      name="email"
+                      name="phoneNumber"
                       type="text"
-                      placeholder="email"
+                      placeholder="Phone Number"
                     />
                   </div>
                   <div>
@@ -124,7 +124,7 @@ const SignupPage = () => {
                   <div>
                     <p>{formErrors.userName}</p>
                     <p>{formErrors.password}</p>
-                    <p>{formErrors.email}</p>
+                    <p>{formErrors.phoneNumber}</p>
                   </div>
                 </form>
               </div>

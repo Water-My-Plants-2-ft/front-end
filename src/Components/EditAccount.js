@@ -25,7 +25,7 @@ const EditAccount = () => {
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
-    email: "",
+    phoneNumber: "",
   });
   const [alert, setAlert] = useState(false);
   const [error, setError] = useState("");
@@ -99,11 +99,11 @@ const EditAccount = () => {
 
                     <div>
                       <Input
-                        value={formValues.email}
+                        value={formValues.phoneNumber}
                         onChange={onChange}
-                        name="email"
+                        name="phoneNumber"
                         type="text"
-                        placeholder="New Email"
+                        placeholder="New Number"
                       />
                     </div>
 
