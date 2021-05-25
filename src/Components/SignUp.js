@@ -122,7 +122,7 @@ const SignupPage = () => {
                     Sign Up!
                   </Button>
                   <div>
-                    <p>{formErrors.userName}</p>
+                    <p>{formErrors.username}</p>
                     <p>{formErrors.password}</p>
                     <p>{formErrors.phoneNumber}</p>
                   </div>
