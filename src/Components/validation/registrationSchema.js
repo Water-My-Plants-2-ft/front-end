@@ -11,5 +11,5 @@ export default yup.object().shape({
     .min(4, "Password must be at least 4 characters")
     .max(20, "Password can not be more than 20 characters"),
 
-  phoneNumber: yup.number().required(`number is required`),
+  phoneNumber: yup.number("hello").required(`number is required`),
 });
