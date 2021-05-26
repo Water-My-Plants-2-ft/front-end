@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import styled from "styled-components";
-// import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const FormContainer = styled.div`
   margin-top: 150px;
@@ -33,6 +33,7 @@ const EditAccount = () => {
   });
   // const [alert, setAlert] = useState(false);
   const [error, setError] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     axiosWithAuth()
@@ -52,6 +53,7 @@ const EditAccount = () => {
       .put(`users/${userID}`, formValues)
       .then((res) => {
         console.log("success");
+        history.push("/myaccount");
       })
       .catch((err) => {
         console.log(err);
