@@ -9,6 +9,7 @@ import MyAccount from "./Components/MyAccount";
 import MyPlants from "./Components/MyPlants";
 import Profile from "./Components/Profile";
 import EditPlant from "./Components/EditPlant";
+import EditAccount from "./Components/EditAccount";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
             <Route path="/myaccount" component={MyAccount} />
             <Route path="/myplants" component={MyPlants} />
             <Route path="/profile" component={Profile} />
-            <Route path="/editPlant" component={EditPlant} />
+            <Route path="/editplant/:plant_id" component={EditPlant} />
+            <Route path="/editaccount" component={EditAccount} />
           </Switch>
         </div>
       </Router>
