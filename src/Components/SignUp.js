@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import * as yup from "yup";
-import schema from "../Components/validation/registrationSchema.js";
+import React, { useState } from "react";
+// import * as yup from "yup";
+// import schema from "../Components/validation/registrationSchema.js";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Button } from "reactstrap";
@@ -27,8 +27,6 @@ const SignupPage = () => {
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormValues);
-  const [submissionErrors, setSubmissionErrors] = useState("");
 
   // const [disabled, setDisabled] = useState(true);
   const history = useHistory();
@@ -52,23 +50,6 @@ const SignupPage = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-
-    // yup
-    //   .reach(schema, name)
-    //   .validate(value)
-    //   .then(() => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: "",
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: err.errors[0],
-    //     });
-    //   });
-
     setFormValues({
       ...formValues,
       [name]: value,
@@ -87,7 +68,9 @@ const SignupPage = () => {
         <Col xs="12" md={{ size: 6, offset: 3 }}>
           <FormContainer>
             <div className="signup-form">
-              <h2>Sign up</h2>
+              <h2>Create an account, then sign in!</h2>
+              <br />
+              <br />
 
               <div>
                 <form onSubmit={onSubmit}>
@@ -119,15 +102,9 @@ const SignupPage = () => {
                       placeholder="Password"
                     />
                   </div>
-                  <div>
-                    <p>{submissionErrors}</p>
-                  </div>
+                  <div></div>
                   <Button type="submit">Sign Up!</Button>
-                  <div>
-                    <p>{formErrors.username}</p>
-                    <p>{formErrors.password}</p>
-                    <p>{formErrors.phone}</p>
-                  </div>
+                  <div></div>
                 </form>
               </div>
             </div>

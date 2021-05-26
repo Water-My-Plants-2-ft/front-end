@@ -11,8 +11,6 @@ import {
   CardTitle,
   CardSubtitle,
   Button,
-  Badge,
-  CardText,
 } from "reactstrap";
 import plantpic from "../img/plantpic.jpg";
 

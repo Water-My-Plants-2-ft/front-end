@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
-import { Alert } from "react-bootstrap";
+
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const FormContainer = styled.div`
   margin-top: 150px;
@@ -25,21 +25,21 @@ const Error = styled.h4`
 const userID = window.localStorage.getItem("id");
 
 const EditAccount = () => {
-  const [id, setId] = useState(userID);
+  // const [id, setId] = useState(userID);
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
     phone: "",
   });
-  const [alert, setAlert] = useState(false);
+  // const [alert, setAlert] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/users/${id}`)
+      .get(`/users/${userID}`)
       .then((res) => {
         console.log(res);
-        setFormValues(res.data);
+        // setFormValues(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +49,7 @@ const EditAccount = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`users/${id}`, formValues)
+      .put(`users/${userID}`, formValues)
       .then((res) => {
         console.log("success");
       })
@@ -65,12 +65,6 @@ const EditAccount = () => {
   return (
     <div>
       <Container>
-        {alert && (
-          <Alert variant="success">
-            <Alert.Heading>How's it going?!</Alert.Heading>
-            <p>You Updated your Account</p>
-          </Alert>
-        )}
         <br />
         <br />
 
@@ -106,7 +100,7 @@ const EditAccount = () => {
                         onChange={onChange}
                         name="password"
                         type="password"
-                        placeholder="Password"
+                        placeholder="New Password"
                       />
                     </div>
 

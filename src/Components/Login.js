@@ -37,6 +37,7 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("id", res.data.user_id);
         history.push("/myplants");
+        window.location.reload();
       })
       .catch((err) => {
         console.log("unsuccesful", err.response);

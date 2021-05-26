@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Badge } from "reactstrap";
 import { SpinnerDiv, Spinner } from "./styled-components/spinner";
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 const userID = window.localStorage.getItem("id");
 const MyAccount = (props) => {
   // const { user_id } = useParams();
 
   // const [isFetching, setIsFetching] = useState(false);
-  const [id, setId] = useState(userID);
+  // const [id, setId] = useState(userID);
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
@@ -21,7 +21,7 @@ const MyAccount = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/users/${id}`)
+      .get(`/users/${userID}`)
       .then((res) => {
         console.log(res);
 
