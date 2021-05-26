@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { Alert } from "react-bootstrap";
-// import { axiosWithAuth } from "./helpers/axiosWithAuth";
+import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 
 const FormContainer = styled.div`
   margin-top: 150px;
@@ -21,39 +22,42 @@ const Error = styled.h4`
   color: red;
 `;
 
+const userID = window.localStorage.getItem("id");
+
 const EditAccount = () => {
+  const [id, setId] = useState(userID);
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
-    phoneNumber: "",
+    phone: "",
   });
   const [alert, setAlert] = useState(false);
   const [error, setError] = useState("");
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get("/account")
-  //     .then((res) => {
-  //       console.log(res);
-  //       setFormValues({ ...res.data, password: "" });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/users/${id}`)
+      .then((res) => {
+        console.log(res);
+        setFormValues(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const onSubmit = (e) => {
-    //   e.preventDefault();
-    //   axiosWithAuth()
-    //     .put("/account", formValues)
-    //     .then((res) => {
-    //       setAlert(!false);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //       console.log(err.response);
-    //       setError(err.response.statusText);
-    //     });
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`users/${id}`, formValues)
+      .then((res) => {
+        console.log("success");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response);
+        setError(err.response.statusText);
+      });
   };
   const onChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -89,10 +93,10 @@ const EditAccount = () => {
                     </div>
                     <div>
                       <Input
-                        value={formValues.phoneNumber}
+                        value={formValues.phone}
                         onChange={onChange}
-                        name="phoneNumber"
-                        type="text"
+                        name="phone"
+                        type="phone"
                         placeholder="New Number"
                       />
                     </div>

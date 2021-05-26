@@ -4,6 +4,7 @@ import * as yup from "yup";
 import styled from "styled-components";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
+import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 
 import { useHistory } from "react-router";
 
@@ -19,12 +20,12 @@ const Input = styled.input`
   border-radius: 5px;
   margin-bottom: 15px;
 `;
-
+const userID = window.localStorage.getItem("id");
 const initialValue = {
-  plant_name: "",
+  nickname: "",
   species: "",
-
-  h2o_Frequency: "",
+  h2ofrequency: "",
+  user_id: userID,
 };
 
 //Component for owner to add an item
@@ -34,36 +35,39 @@ const AddItem = () => {
   const history = useHistory();
 
   //Change handler
-  const inputChange = (event) => {
-    const { name, value } = event.target;
+  const inputChange = (e) => {
+    setItem({
+      ...item,
+      [e.target.name]: e.target.value,
+    });
 
-    validateItem(name, item[name]);
+    //validateItem(name, item[name]);
   };
 
   //Submit handler
   const onSubmit = (event) => {
     event.preventDefault();
-    // console.log("New item added");
-    // console.log(item);
 
-    // axios
-    //   .post("url", item)
-    //   .then((res) => {
-    //     alert("New Item Added 🤠");
-    //     history.push("/items");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axiosWithAuth()
+      .post("/plants", item)
+      .then((res) => {
+        console.log("New item added");
+        console.log(item);
+        // alert("New Item Added 🤠");
+
+        history.push("/myplants");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setItem(initialValue);
   };
 
   //Errors state
   const [errors, setErrors] = useState({
-    plant_name: "",
+    nickname: "",
     species: "",
-
-    h2o_Frequency: "",
+    h2ofrequency: "",
   });
 
   //Validation
@@ -96,8 +100,8 @@ const AddItem = () => {
               <label>
                 Plant Name:
                 <Input
-                  name="plant_name"
-                  value={item.plant_name}
+                  name="nickname"
+                  value={item.nickname}
                   onChange={inputChange}
                 />
               </label>
@@ -114,24 +118,19 @@ const AddItem = () => {
               <label>
                 h2o_Frequency:
                 <Input
-                  name="h2o_Frequency"
+                  name="h2ofrequency"
                   type="text"
-                  value={item.h2o_Frequency}
+                  value={item.h2ofrequency}
                   onChange={inputChange}
                 />
               </label>
               <div>
-                <Button
-                  type="submit"
-                  disabled={!item.plant_name || !item.species}
-                >
-                  Add Plant
-                </Button>
+                <Button type="submit">Add Plant</Button>
               </div>
-              <p>{errors.plant_name}</p>
+              <p>{errors.nickname}</p>
               <p>{errors.species}</p>
 
-              <p>{errors.h2o_Frequency}</p>
+              <p>{errors.h2ofrequency}</p>
             </form>
           </FormContainer>
         </Col>

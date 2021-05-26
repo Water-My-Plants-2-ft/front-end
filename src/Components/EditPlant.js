@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
-
+import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import { useHistory } from "react-router";
 
 const FormContainer = styled.div`
@@ -21,10 +21,9 @@ const Input = styled.input`
 `;
 
 const initialValue = {
-  plant_name: "",
+  nickname: "",
   species: "",
-
-  h2o_Frequency: "",
+  h2ofrequency: "",
 };
 
 //Component for owner to add an item
@@ -34,17 +33,15 @@ const EditPlant = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(useParams);
-    console.log(plant_id);
-    // axios
-    //   .get(`/myplants/${plant_id}`)
-    //   .then((res) => {
-    //     console.log("item edit response", res.data);
-    //     setItem(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axiosWithAuth()
+      .get(`plants/${plant_id}`)
+      .then((res) => {
+        console.log("item edit response", res.data);
+        setItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [plant_id]);
 
   //Change handler
@@ -56,13 +53,13 @@ const EditPlant = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const newItem = {
-      plant_name: item.plant_name.trim(),
+      nickname: item.nickname.trim(),
       species: item.species.trim(),
 
-      category: item.category.trim(),
+      h2ofrequency: item.h2ofrequency.trim(),
     };
-    axios
-      .put(`/myplants/${plant_id}`, newItem)
+    axiosWithAuth()
+      .put(`plants/${plant_id}`, newItem)
       .then((res) => {
         console.log(res);
         setItem(initialValue);
@@ -83,8 +80,8 @@ const EditPlant = () => {
               <label>
                 Plant Name:
                 <Input
-                  name="plant_name"
-                  value={item.plant_name}
+                  name="nickname"
+                  value={item.nickname}
                   onChange={onChange}
                 />
               </label>
@@ -99,18 +96,18 @@ const EditPlant = () => {
               </label>
               <br />
               <label>
-                h2o_Frequency:
+                h2ofrequency:
                 <Input
-                  name="h2o_Frequency"
+                  name="h2ofrequency"
                   type="text"
-                  value={item.h2o_Frequency}
+                  value={item.h2ofrequency}
                   onChange={onChange}
                 />
               </label>
               <div>
                 <Button
                   type="submit"
-                  // disabled={!item.plant_name || !item.species}
+                  // disabled={!item.nickname || !item.species}
                 >
                   Edit Plant
                 </Button>

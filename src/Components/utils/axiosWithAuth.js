@@ -1,12 +1,12 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export const axiosWithAuth = () => {
-//   const token = localStorage.getItem("token");
+export const axiosWithAuth = () => {
+  const token = localStorage.getItem("token");
 
-//   return axios.create({
-//     headers: {
-//       Authorization: token,
-//     },
-//     baseURL: "https://secret-recipes-2.herokuapp.com/api",
-//   });
-// };
+  return axios.create({
+    headers: {
+      Authorization: token,
+    },
+    baseURL: "https://water-my-plants-web41-leah.herokuapp.com/api",
+  });
+};

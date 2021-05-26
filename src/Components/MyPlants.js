@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import { SpinnerDiv, Spinner } from "./styled-components/spinner";
-
+import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import { Button, Form, Label, Input } from "reactstrap";
 import PlantCard from "./PlantCard";
 import { DummyData } from "./DummyData";
 
 const MyPlants = () => {
   //   const userId = Number(localStorage.getItem("userId"));
-  const [allPlants, setAllPlants] = useState(DummyData);
+  const [allPlants, setAllPlants] = useState([]);
   //   const [err, setErr] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,13 +22,23 @@ const MyPlants = () => {
     event.preventDefault();
   };
 
-  //   useEffect(() => {
-  //     setAllPlants(DummyData);
-  //   }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/plants")
+      .then((res) => {
+        setAllPlants(res.data);
+        // console.log(res);
+        setIsFetching(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsFetching(false);
+      });
+  }, []);
 
   const gotPlantList = allPlants.length !== 0 ? true : false;
 
-  if (isFetching)
+  if (!gotPlantList)
     return (
       <SpinnerDiv>
         <Spinner color="info" />
@@ -56,8 +66,8 @@ const MyPlants = () => {
         <Row>
           {allPlants.map((plant) => {
             if (
-              plant.plant_name &&
-              plant.plant_name.toLowerCase().includes(searchTerm.toLowerCase())
+              plant.nickname &&
+              plant.nickname.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
               return (
                 <Col xs="12" sm="6" md="4" key={plant.plant_id}>
@@ -69,19 +79,21 @@ const MyPlants = () => {
         </Row>
       </Container>
     );
-  else if (!gotPlantList)
-    return (
-      <Container style={{ margin: "50px auto" }}>
-        <Row>
-          <Col xs="12" lg={{ size: 4, offset: 4 }}>
-            <Card>
-              <CardBody>Looks like there's nothing listed yet</CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    );
-  else return <></>;
+  // else if (!gotPlantList)
+  //   return (
+  //     <Container style={{ margin: "50px auto" }}>
+  //       <Row>
+  //         <Col xs="12" lg={{ size: 4, offset: 4 }}>
+  //           <Card>
+  //             <CardBody>
+  //               No Plants yet? <Link to="/addplants">Add one!</Link>
+  //             </CardBody>
+  //           </Card>
+  //         </Col>
+  //       </Row>
+  //     </Container>
+  //   );
+  // else return <></>;
 };
 
 export default MyPlants;

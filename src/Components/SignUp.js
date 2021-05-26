@@ -23,47 +23,51 @@ const SignupPage = () => {
   const initialFormValues = {
     username: "",
     password: "",
-    phoneNumber: "",
+    phone: "",
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormValues);
   const [submissionErrors, setSubmissionErrors] = useState("");
 
-  const [disabled, setDisabled] = useState(true);
+  // const [disabled, setDisabled] = useState(true);
   const history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // axios
-    //   .post("url", formValues)
-    //   .then((res) => {
-    //     console.log(res);
-    //     localStorage.setItem("token", res.data.token);
-    //     history.push("/items");
-    //   })
-    //   .catch((err) => setSubmissionErrors(err.response.data.message));
+    axios
+      .post(
+        "https://water-my-plants-web41-leah.herokuapp.com/api/auth/register",
+        formValues
+      )
+      .then((res) => {
+        console.log(res);
+        // localStorage.setItem("token", res.data.token);
+        history.push("/login");
+      })
+      .catch((err) => console.log(err));
+    // setSubmissionErrors(err.response.data.message));
     setFormValues(initialFormValues);
   };
 
   const onChange = (e) => {
     const { name, value } = e.target;
 
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then(() => {
-        setFormErrors({
-          ...formErrors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0],
-        });
-      });
+    // yup
+    //   .reach(schema, name)
+    //   .validate(value)
+    //   .then(() => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: "",
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: err.errors[0],
+    //     });
+    //   });
 
     setFormValues({
       ...formValues,
@@ -71,11 +75,11 @@ const SignupPage = () => {
     });
   };
 
-  useEffect(() => {
-    schema.isValid(formValues).then((valid) => {
-      setDisabled(!valid);
-    });
-  }, [formValues]);
+  // useEffect(() => {
+  //   schema.isValid(formValues).then((valid) => {
+  //     setDisabled(!valid);
+  //   });
+  // }, [formValues]);
 
   return (
     <Container>
@@ -99,9 +103,9 @@ const SignupPage = () => {
 
                   <div>
                     <Input
-                      value={formValues.phoneNumber}
+                      value={formValues.phone}
                       onChange={onChange}
-                      name="phoneNumber"
+                      name="phone"
                       type="text"
                       placeholder="Phone Number"
                     />
@@ -118,13 +122,11 @@ const SignupPage = () => {
                   <div>
                     <p>{submissionErrors}</p>
                   </div>
-                  <Button disabled={disabled} type="submit">
-                    Sign Up!
-                  </Button>
+                  <Button type="submit">Sign Up!</Button>
                   <div>
                     <p>{formErrors.username}</p>
                     <p>{formErrors.password}</p>
-                    <p>{formErrors.phoneNumber}</p>
+                    <p>{formErrors.phone}</p>
                   </div>
                 </form>
               </div>
