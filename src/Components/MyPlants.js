@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, CardBody } from "reactstrap";
+
+import { Container, Row, Col } from "reactstrap";
 import { SpinnerDiv, Spinner } from "./styled-components/spinner";
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
-import { Button, Form, Label, Input } from "reactstrap";
+import { Button, Form, Input } from "reactstrap";
 import PlantCard from "./PlantCard";
-import { DummyData } from "./DummyData";
+// import { DummyData } from "./DummyData";
 
 const MyPlants = () => {
   //   const userId = Number(localStorage.getItem("userId"));
   const [allPlants, setAllPlants] = useState([]);
-  //   const [err, setErr] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event) => {
@@ -27,12 +26,9 @@ const MyPlants = () => {
       .get("/plants")
       .then((res) => {
         setAllPlants(res.data);
-        // console.log(res);
-        setIsFetching(false);
       })
       .catch((err) => {
         console.log(err);
-        setIsFetching(false);
       });
   }, []);
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Row, Col, Button } from "reactstrap";
-import axios from "axios";
+
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 import { useHistory } from "react-router";
 

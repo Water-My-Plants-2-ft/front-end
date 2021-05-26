@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import schema from "../Components/validation/plantSchema";
-import * as yup from "yup";
+// import schema from "../Components/validation/plantSchema";
+// import * as yup from "yup";
 import styled from "styled-components";
 import { Container, Row, Col, Button } from "reactstrap";
-import axios from "axios";
+
 import { axiosWithAuth } from "../Components/utils/axiosWithAuth";
 
 import { useHistory } from "react-router";
@@ -64,31 +64,31 @@ const AddItem = () => {
   };
 
   //Errors state
-  const [errors, setErrors] = useState({
-    nickname: "",
-    species: "",
-    h2ofrequency: "",
-  });
+  // const [errors, setErrors] = useState({
+  //   nickname: "",
+  //   species: "",
+  //   h2ofrequency: "",
+  // });
 
   //Validation
-  const validateItem = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then(() => {
-        setErrors({
-          ...errors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        console.log(err.errors);
-        setErrors({
-          ...errors,
-          [name]: err.errors[0],
-        });
-      });
-  };
+  // const validateItem = (name, value) => {
+  //   yup
+  //     .reach(schema, name)
+  //     .validate(value)
+  //     .then(() => {
+  //       setErrors({
+  //         ...errors,
+  //         [name]: "",
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.errors);
+  //       setErrors({
+  //         ...errors,
+  //         [name]: err.errors[0],
+  //       });
+  //     });
+  // };
 
   return (
     <Container>
@@ -127,10 +127,10 @@ const AddItem = () => {
               <div>
                 <Button type="submit">Add Plant</Button>
               </div>
-              <p>{errors.nickname}</p>
+              {/* <p>{errors.nickname}</p>
               <p>{errors.species}</p>
 
-              <p>{errors.h2ofrequency}</p>
+              <p>{errors.h2ofrequency}</p> */}
             </form>
           </FormContainer>
         </Col>
