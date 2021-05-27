@@ -62,8 +62,8 @@ const PlantCard = ({ plant }) => {
         >
           Edit Plant
         </Button>
-        <br />
-        <br />
+        {/* <br />
+        <br /> */}
         <Button onClick={() => deletePlant(plant_id)}>Delete Plant</Button>
       </CardBody>
     </Card>
